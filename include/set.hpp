@@ -3,6 +3,7 @@
 
 #include <string>
 #include <vector>
+#include <functional>
 
 struct StringHasher {
   unsigned int operator()(const std::string &key) const {
@@ -14,7 +15,7 @@ struct StringHasher {
   }
 };
 
-template <class T, class H> class Set {
+template <class T, class H=std::hash<T>> class Set {
 public:
   Set(int initSize, const H &hasher);
   ~Set() = default;

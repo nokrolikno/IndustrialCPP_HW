@@ -34,6 +34,27 @@ TEST(addition, ExpandRealloc) {
   EXPECT_TRUE(hash_set.add("p", "p"));
 }
 
+TEST(addition, More) {
+  StringHasher h;
+  Set<std::string, StringHasher> hash_set(8, h);
+  EXPECT_TRUE(hash_set.add("a", "a"));
+  EXPECT_TRUE(hash_set.add("b", "b"));
+  EXPECT_TRUE(hash_set.add("c", "c"));
+  EXPECT_TRUE(hash_set.add("d", "d"));
+  EXPECT_TRUE(hash_set.add("e", "e"));
+  EXPECT_TRUE(hash_set.add("f", "f"));
+  EXPECT_TRUE(hash_set.add("g", "g"));
+  EXPECT_TRUE(hash_set.add("h", "h"));
+  EXPECT_TRUE(hash_set.add("i", "i"));
+  EXPECT_TRUE(hash_set.add("j", "j"));
+  EXPECT_TRUE(hash_set.add("k", "k"));
+  EXPECT_TRUE(hash_set.add("l", "l"));
+  EXPECT_TRUE(hash_set.add("m", "m"));
+  EXPECT_TRUE(hash_set.add("n", "n"));
+  EXPECT_TRUE(hash_set.add("o", "o"));
+  EXPECT_TRUE(hash_set.add("p", "p"));
+}
+
 TEST(Get, Basecase) {
   StringHasher h;
   Set<std::string, StringHasher> hash_set(8, h);

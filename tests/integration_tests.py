@@ -69,6 +69,32 @@ class IntegrationTests(unittest.TestCase):
             b"\n",
         ])
 
+    def test_reallocate_integration(self):
+        result = run_program([
+            b"2\n",
+            b"9\n",
+            b"+ str1 a\n",
+            b"+ str2 b\n",
+            b"+ str3 c\n",
+            b"+ str1 d\n",
+            b"? str1\n",
+            b"? somestr\n",
+            b"- str1\n",
+            b"- str1\n",
+            b"? str1\n",
+        ])
+        self.assertListEqual(result, [
+            b"OK\n",
+            b"OK\n",
+            b"OK\n",
+            b"FAIL\n",
+            b"a\n",
+            b"\n",
+            b"OK\n",
+            b"FAIL\n",
+            b"\n",
+        ])
+
 
 if __name__ == '__main__':
     unittest.main()
