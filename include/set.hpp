@@ -42,8 +42,7 @@ private:
   void growTable(std::size_t new_size);
 };
 
-template <class T, class H>
-Set<T, H>::Set(int initSize, const H &_hasher)
+template <class T, class H> Set<T, H>::Set(int initSize, const H &_hasher)
     : hasher(_hasher), table(initSize), keysCount(0) {}
 
 template <class T, class H> bool Set<T, H>::_has(const T &key) const {
@@ -97,7 +96,7 @@ template <class T, class H> bool Set<T, H>::add(const T &key, const T &value) {
     return false;
   }
   if (keysCount >= table.size() * 3 / 4) {
-    growTable(table.size());
+    growTable(table.size() * 2);
   }
   std::size_t key_hash = hasher(key) % table.size();
   std::size_t pos = key_hash;
@@ -159,7 +158,7 @@ template <class T, class H> void Set<T, H>::growTable(std::size_t new_size) {
   for (std::size_t i = 0; i < table.size(); ++i) {
     if (table[i].state == State::Key) {
       ++new_keysCount;
-      std::size_t new_pos = hasher(table[i].data) % new_size;
+      std::size_t new_pos = hasher(table[i].key) % new_size;
       for (std::size_t prob = 0;; ++prob) {
         new_pos = (new_pos + prob) % new_size;
         if (buffer[new_pos].state == State::Deleted ||
