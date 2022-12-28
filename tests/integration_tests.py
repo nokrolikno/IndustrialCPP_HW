@@ -43,6 +43,32 @@ class IntegrationTests(unittest.TestCase):
             b"\n",
         ])
 
+    def test_expand_integration(self):
+        result = run_program([
+            b"2\n",
+            b"9\n",
+            b"+ 1 a\n",
+            b"+ 2 b\n",
+            b"+ 3 c\n",
+            b"+ 1 d\n",
+            b"? 1\n",
+            b"? 4\n",
+            b"- 1\n",
+            b"- 1\n",
+            b"? 1\n",
+        ])
+        self.assertListEqual(result, [
+            b"OK\n",
+            b"OK\n",
+            b"OK\n",
+            b"FAIL\n",
+            b"a\n",
+            b"\n",
+            b"OK\n",
+            b"FAIL\n",
+            b"\n",
+        ])
+
 
 if __name__ == '__main__':
     unittest.main()
