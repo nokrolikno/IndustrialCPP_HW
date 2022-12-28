@@ -53,9 +53,9 @@ class IntegrationTests(unittest.TestCase):
             b"+ 1 d\n",
             b"? 1\n",
             b"? 4\n",
-            b"- str1\n",
-            b"- str1\n",
-            b"? str1\n",
+            b"- 1\n",
+            b"- 1\n",
+            b"? 1\n",
         ])
         self.assertListEqual(result, [
             b"OK\n",
